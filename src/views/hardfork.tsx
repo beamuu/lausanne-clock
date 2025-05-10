@@ -1,5 +1,6 @@
 import "@radix-ui/themes/styles.css";
 import {
+    Button,
     Card,
     Container,
     Flex,
@@ -22,6 +23,7 @@ import { chain } from "@/modules/probe/chain";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { GiCheckeredFlag } from "react-icons/gi";
 import { SiHiveBlockchain } from "react-icons/si";
+import { GoArrowRight } from "react-icons/go";
 
 export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
     chainId,
@@ -68,8 +70,42 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                     justifyContent: "center",
                     flexDirection: "column",
                     gap: "40px",
+                    position: "relative",
                 }}
             >
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: "24px",
+                        left: "0",
+                        right: "0",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <a href={chainId === 96 ? "/testnet" : "/"} style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                    }}>
+                        <Button
+                            variant="ghost"
+                            color="gray"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                borderRadius: "30px",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.13rem",
+                            }}
+                        >
+                            Switch to {chainId === 96 ? "Testnet" : "Mainnet"}{" "}
+                            Clock
+                            <GoArrowRight size="22px"/>
+                        </Button>
+                    </a>
+                </div>
                 <Flex
                     align="center"
                     justify="center"
@@ -113,7 +149,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                                 ).toLocaleString()}{" "}
                             </b>
                         </Text>
-                        blocks before the hard fork begin{" "}
+                        blocks until hard fork begins
                     </Text>
                 </Flex>
                 <Flex align="center" gap="6px">

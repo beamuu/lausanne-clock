@@ -4,13 +4,19 @@ body {
 
 .radix-themes:where([data-is-root-theme="true"]) {
     margin: 0;
-    background: linear-gradient(
+    /* background: linear-gradient(
         111deg,
         rgba(0, 0, 0, 1) 0%,
         rgb(13, 21, 18) 24%,
         rgba(0, 0, 0, 1) 29%,
         rgba(17, 56, 26, 1) 100%
-    );
+    ); */
+    background-image: url(/lausanne-wallpaper.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #000;
 }
 .radix-themes {
     margin: 0;
