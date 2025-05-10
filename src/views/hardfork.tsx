@@ -161,14 +161,14 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                 </Text>
                 <Flex gap="8" mt="4">
                     <Link
-                        href="https://github.com/kub-chain/bkc"
+                        href="https://github.com/kub-chain/bkc/releases/tag/v2.3.0-bkc"
                         color="gray"
                         size="2"
                     >
                         Release Note
                     </Link>
                     <Link
-                        href="https://github.com/kub-chain/bkc/releases/tag/v2.3.0-bkc"
+                        href="https://github.com/kub-chain/bkc"
                         color="gray"
                         size="2"
                     >
