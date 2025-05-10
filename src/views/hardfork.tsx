@@ -1,14 +1,15 @@
 import "@radix-ui/themes/styles.css";
 import {
     Card,
+    Container,
     Flex,
     Heading,
     HoverCard,
+    Link,
     Text,
     Tooltip,
 } from "@radix-ui/themes";
 import { FaGithub } from "react-icons/fa";
-import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import {
     GenesisPosConfig,
@@ -59,87 +60,122 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
     }
 
     return (
-        <Flex
-            style={{
-                height: "100dvh",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                gap: "40px",
-            }}
-        >
-            <Flex align="center" justify="center" direction="column" gap="12px">
-                <Heading
-                    style={{
-                        fontSize: "max(5dvw, 50px)",
-                        letterSpacing: "-0.05em",
-                        lineHeight: "1",
-                        fontWeight: 900,
-                    }}
+        <>
+            <Flex
+                style={{
+                    height: "100dvh",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    gap: "40px",
+                }}
+            >
+                <Flex
+                    align="center"
+                    justify="center"
+                    direction="column"
+                    gap="12px"
                 >
-                    KUB
-                </Heading>
-                <Text
-                    as="span"
-                    style={{
-                        fontWeight: 500,
-                        letterSpacing: "0.07em",
-                        fontSize: "max(1.3dvw, 22px)",
-                        opacity: 0.7,
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                    }}
-                >
-                    Lausanne Hard Fork {chainId === 25925 ? "(Testnet)" : ""}
-                </Text>
-            </Flex>
-            <div>
-                <Countdown timestamp={time} />
-            </div>
-            <Flex align="center" gap="6px">
-                <GiCheckeredFlag />
-                <Text color="gray">
-                    <Text as="span" color="jade">
-                        <b>
-                            {(
-                                BigInt(config.lausanneBlock) - blockNumber
-                            ).toLocaleString()}{" "}
-                        </b>
-                    </Text>
-                    blocks before the hard fork begin{" "}
-                </Text>
-            </Flex>
-            <Flex align="center" gap="6px">
-                <SiHiveBlockchain />
-                <Text color="gray">{blockNumber.toLocaleString()}</Text>
-                <IoArrowForwardOutline />
-                <Text color="gray">
-                    {config.lausanneBlock.toLocaleString()}
-                </Text>
-            </Flex>
-            <div style={{ cursor: "pointer" }}>
-                <Link
-                    href="https://github.com/kub-chain/bkc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        fontSize: "2rem",
-                        display: "block",
-                        alignItems: "center",
-                        gap: "1rem",
-                        cursor: "pointer",
-                        opacity: 0.8,
-                    }}
-                >
-                    <FaGithub
+                    <Heading
                         style={{
-                            cursor: "pointer",
+                            fontSize: "max(5dvw, 50px)",
+                            letterSpacing: "-0.05em",
+                            lineHeight: "1",
+                            fontWeight: 900,
                         }}
-                    />
-                </Link>
-            </div>
-        </Flex>
+                    >
+                        KUB
+                    </Heading>
+                    <Text
+                        as="span"
+                        style={{
+                            fontWeight: 700,
+                            letterSpacing: "0.3em",
+                            fontSize: "max(1.3dvw, 22px)",
+                            opacity: 0.7,
+                            textTransform: "uppercase",
+                            textAlign: "center",
+                        }}
+                    >
+                        Lausanne Hard Fork {chainId === 25925 ? "Testnet" : ""}
+                    </Text>
+                </Flex>
+                <div>
+                    <Countdown timestamp={time} />
+                </div>
+                <Flex align="center" gap="6px">
+                    <GiCheckeredFlag />
+                    <Text color="gray">
+                        <Text as="span" color="jade">
+                            <b>
+                                {(
+                                    BigInt(config.lausanneBlock) - blockNumber
+                                ).toLocaleString()}{" "}
+                            </b>
+                        </Text>
+                        blocks before the hard fork begin{" "}
+                    </Text>
+                </Flex>
+                <Flex align="center" gap="6px">
+                    <SiHiveBlockchain />
+                    <Text color="gray">{blockNumber.toLocaleString()}</Text>
+                    <IoArrowForwardOutline />
+                    <Text color="gray">
+                        {config.lausanneBlock.toLocaleString()}
+                    </Text>
+                </Flex>
+                <div style={{ cursor: "pointer" }}>
+                    <Link
+                        href="https://github.com/kub-chain/bkc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            textDecoration: "none",
+                            color: "inherit",
+                            fontSize: "2rem",
+                            display: "block",
+                            alignItems: "center",
+                            gap: "1rem",
+                            cursor: "pointer",
+                            opacity: 0.8,
+                        }}
+                    >
+                        <FaGithub
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        />
+                    </Link>
+                </div>
+            </Flex>
+            <Container
+                style={{
+                    minHeight: "200px",
+                    backgroundColor: "#00000060",
+                    backdropFilter: "blur(10px)",
+                    padding: "50px",
+                }}
+            >
+                <Text size="3">
+                    <strong>Related Resources</strong>
+                </Text>
+                <Flex gap="8" mt="4">
+                    <Link
+                        href="https://github.com/kub-chain/bkc"
+                        color="gray"
+                        size="2"
+                    >
+                        Release Note
+                    </Link>
+                    <Link
+                        href="https://github.com/kub-chain/bkc/releases/tag/v2.3.0-bkc"
+                        color="gray"
+                        size="2"
+                    >
+                        Source Code
+                    </Link>
+                </Flex>
+            </Container>
+        </>
     );
 };

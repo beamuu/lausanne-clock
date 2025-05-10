@@ -85,7 +85,7 @@ const NumberCard: React.FC<{
     }
 };
 
-const cardBorderRadius = "28px";
+const cardBorderRadius = "5dvw";
 
 const StyledCard = styled.div`
     padding: 20px;
