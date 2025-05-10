@@ -5,7 +5,6 @@ import { createStorageLookupJobs } from "./storage-jobs";
 import { compareStorage, StorageLookupTarget, StorageMap } from "./storage";
 import { createInterfacesTest, InterfaceTest } from "./interface-jobs";
 import { createMarkdownDocument, generateMarkdownTable } from "./utils/string";
-import { logger } from "./logger";
 import { saveToFile } from "./utils/fs";
 
 const startTime = new Date();
@@ -80,7 +79,6 @@ async function main() {
 
     const unwatch = client.watchBlockNumber({
         onBlockNumber: async (blockNumber) => {
-            logger.info(`New block incomming ${blockNumber.toLocaleString()}`);
             const testAttemped = (blockNumber - lausanneBlock) / 12n
             if (
                 blockNumber >= lausanneBlock && (blockNumber - lausanneBlock) % 12n === 0n
@@ -103,7 +101,6 @@ async function tests(
     b: bigint,
     id: bigint,
 ) {
-    logger.info(`Test #${id} ${a} ${b}`);
     const storagesReport = await testStorages(jobs, a, b);
     const interfacesReport = await testInterfaces(infs, a, b);
     const doc = createMarkdownDocument([
@@ -148,9 +145,6 @@ async function testStorages(
             if (!diff[each as Hex][slot as Hex].ok) {
                 const preValue = pre[each as Hex][slot as Hex].slot;
                 const postValue = post[each as Hex][slot as Hex].slot;
-                logger.error(
-                    `Mismatch in storage: ${each} ${hexToBigInt(slot as Hex)} ${preValue}(${hexToBigInt(preValue)}) !== ${postValue}(${hexToBigInt(postValue)})`
-                );
             }
         }
     }
@@ -187,7 +181,7 @@ async function testInterfaces(
     }
     for (const each of results) {
         if (each[0] !== each[1]) {
-            logger.error(`Mismatch in results: ${each[0]} !== ${each[1]}`);
+            //todo: print diff
         }
     }
     return generateMarkdownTable(resultReport);
