@@ -73,7 +73,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                     position: "relative",
                 }}
             >
-                <div
+                {/* <div
                     style={{
                         position: "absolute",
                         bottom: "24px",
@@ -105,7 +105,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                             <GoArrowRight size="22px"/>
                         </Button>
                     </a>
-                </div>
+                </div> */}
                 <Flex
                     align="center"
                     justify="center"
