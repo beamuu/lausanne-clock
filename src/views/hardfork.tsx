@@ -133,7 +133,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                             textAlign: "center",
                         }}
                     >
-                        Lausanne Hard Fork {chainId === 25925 ? "Testnet" : ""}
+                        Lausanne Upgrade {chainId === 25925 ? "Testnet" : ""}
                     </Text>
                 </Flex>
                 <div>
