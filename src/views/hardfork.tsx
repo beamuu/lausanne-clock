@@ -170,7 +170,9 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                 )}
 
                 <Flex align="center" gap="6px">
-                    <Card>
+                    <Card style={{
+                        textAlign: "center",
+                    }}>
                         <Heading size="2">
                             Looking for an upgrade instruction?
                         </Heading>
