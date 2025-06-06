@@ -73,7 +73,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                     position: "relative",
                 }}
             >
-                <div
+                {/* <div
                     style={{
                         position: "absolute",
                         bottom: "24px",
@@ -105,7 +105,7 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                             <GoArrowRight size="22px"/>
                         </Button>
                     </a>
-                </div>
+                </div> */}
                 <Flex
                     align="center"
                     justify="center"
@@ -139,26 +139,51 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                 <div>
                     <Countdown timestamp={time} />
                 </div>
-                <Flex align="center" gap="6px">
-                    <GiCheckeredFlag />
-                    <Text color="gray">
-                        <Text as="span" color="jade">
-                            <b>
-                                {(
-                                    BigInt(config.lausanneBlock) - blockNumber
-                                ).toLocaleString()}{" "}
-                            </b>
+                {blockNumber <= config.lausanneBlock ? (
+                    <Flex align="center" gap="6px">
+                        <GiCheckeredFlag />
+                        <Text color="gray">
+                            <Text as="span" color="jade">
+                                <b>
+                                    {(
+                                        BigInt(config.lausanneBlock) -
+                                        blockNumber
+                                    ).toLocaleString()}{" "}
+                                </b>
+                            </Text>
+                            blocks until hard fork begins
                         </Text>
-                        blocks until hard fork begins
-                    </Text>
-                </Flex>
+                    </Flex>
+                ) : null}
+
+                {blockNumber > config.lausanneBlock ? (
+                    <Text>Hello, Lausanne 🎉</Text>
+                ) : (
+                    <Flex align="center" gap="6px">
+                        <SiHiveBlockchain />
+                        <Text color="gray">{blockNumber.toLocaleString()}</Text>
+                        <IoArrowForwardOutline />
+                        <Text color="gray">
+                            {config.lausanneBlock.toLocaleString()}
+                        </Text>
+                    </Flex>
+                )}
+
                 <Flex align="center" gap="6px">
-                    <SiHiveBlockchain />
-                    <Text color="gray">{blockNumber.toLocaleString()}</Text>
-                    <IoArrowForwardOutline />
-                    <Text color="gray">
-                        {config.lausanneBlock.toLocaleString()}
-                    </Text>
+                    <Card style={{
+                        textAlign: "center",
+                    }}>
+                        <Heading size="2">
+                            Looking for an upgrade instruction?
+                        </Heading>
+                        <Text size="2" color="gray">
+                            We have prepared a detailed upgrade instruction{" "}
+                            <Link href="https://docs.kubchain.com/kub-pos/lausanne-upgrade">
+                                here
+                            </Link>
+                            .
+                        </Text>
+                    </Card>
                 </Flex>
                 <div style={{ cursor: "pointer" }}>
                     <Link
@@ -209,6 +234,13 @@ export const HardforkView: FC<{ chainId: SupportedChainId }> = ({
                         size="2"
                     >
                         Source Code
+                    </Link>
+                    <Link
+                        href="https://docs.kubchain.com/kub-pos/lausanne-upgrade"
+                        color="gray"
+                        size="2"
+                    >
+                        Upgrade Instruction
                     </Link>
                 </Flex>
             </Container>
